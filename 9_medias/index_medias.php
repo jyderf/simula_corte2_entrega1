@@ -34,6 +34,9 @@
                     <input type="file" name="archivo" />
                     <br>
                     <br>
+                    <input name="porcentajeConfianza" id="porcentajeConfianza" type="number" name="filas" placeholder="Ingrese porcentaje de cofianza" class="col-lg-10 " min="1" max="100"   required>
+                    <br>
+                    <br>
                     <input class='btn btn-danger' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />
 
                 </div>

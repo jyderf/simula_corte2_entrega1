@@ -7,11 +7,11 @@ if (isset($_POST['boton'])) {
     $ext = substr($nombreArchivo, strrpos($nombreArchivo, '.')); //buscar la posición del último punto del nomre del archivo, es para a partir de ahí extraer la extensión
     if ((in_array($ext, $formatos) && ($nombreArchivo === 'medias.txt'))) { //si esta extensión está dentro de la regla formatos
 
-        if (move_uploaded_file($nombreTmpArchivo, "../archivos/$nombreArchivo")) {
-            $archivo = fopen("../archivos/miarchivo.txt", 'r');
+        if (move_uploaded_file($nombreTmpArchivo, "../archivosMedias/$nombreArchivo")) {
+            $archivo = fopen("../archivosMedias/medias.txt", 'r');
             $numlinea = 0;
             while ($linea = fgets($archivo)) {
-                $aux[] = ($linea); //aquí se llenan los números en el arreglo aux, q luego pasará a una matríz
+                $aux[] = getfloat($linea); //aquí se llenan los números en el arreglo aux, q luego pasará a una matríz
                 $numlinea++;
             }
         }
@@ -19,20 +19,51 @@ if (isset($_POST['boton'])) {
 
         <?php
         echo "<h4 align='center'>Contenido del Archivo</h4>";
+        $porcentajeConfianza = $_POST['porcentajeConfianza'];
         $n = $numlinea;
         $m = sqrt($n);
         $intervalo = 1 / $m;
         $cantidadIntervalos = $intervalo * 100;
+        $tamaño = intval($m);
 
-        echo$n."<== n <br>";
-        echo$m."<== m <br>";
-        echo$intervalo."<== intervalo <br>";
-        echo$cantidadIntervalos."<== cantidadIntervalos <br>";
-
-
-
+        
         $matrizAleatorios = array(array());
-        $indiceCelda = array(array());
+        $inc = 0;
+        for ($i = 0; $i < $tamaño; $i++) { //pasando array a matriz
+            for ($j = 0; $j < $tamaño; $j++) {
+                $matrizAleatorios[$i][$j] = $aux[$inc];
+                $inc++;
+            }
+        }
+        $promedio = 0;
+        for ($i = 0; $i < $n; $i++) { //promedio
+            $promedio = $promedio + $aux[$i];
+        }
+        $promedio = $promedio / $n;
+        $redondeoPromedio=round($promedio,4);
+
+        echo "<p class='alert alert-success'>
+        Varianza = σ² = 1/12 = 0,08333   
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        r=" . $promedio .
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        M = "  .$redondeoPromedio.
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         n=" . $n .
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         Confianza=" . $porcentajeConfianza . "%</p>";
+
+        echo "<table border='1'>";
+        echo "<tr class='text-center bg-dark'><td colspan='" . $tamaño . "'> Tus números aleatorios</td></tr>";
+        for ($i = 0; $i < $tamaño; $i++) {
+            echo "<tr>";
+            for ($j = 0; $j < $tamaño; $j++) {
+                echo "<td>" . $matrizAleatorios[$i][$j] . "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+
 
         ?>
 
@@ -52,10 +83,6 @@ if (isset($_POST['boton'])) {
                     $i_array++;
                 }
             }
-
-
-
-           
         } else {
             ?>
 
