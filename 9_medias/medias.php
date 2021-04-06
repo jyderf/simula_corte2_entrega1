@@ -26,7 +26,7 @@ if (isset($_POST['boton'])) {
         $cantidadIntervalos = $intervalo * 100;
         $tamaño = intval($m);
 
-        
+
         $matrizAleatorios = array(array());
         $inc = 0;
         for ($i = 0; $i < $tamaño; $i++) { //pasando array a matriz
@@ -35,23 +35,44 @@ if (isset($_POST['boton'])) {
                 $inc++;
             }
         }
-        $promedio = 0;
+        $r = 0;
         for ($i = 0; $i < $n; $i++) { //promedio
-            $promedio = $promedio + $aux[$i];
+            $r = $r + $aux[$i];
         }
-        $promedio = $promedio / $n;
-        $redondeoPromedio=round($promedio,4);
+        $r = $r / $n;
+
+
+        $LI = 0;
+        $LS = 0;
+
+        $LI = (1 / 2) - (1.65) * (1 / sqrt(12 * $n));
+        $LI = number_format($LI, 4, ',', '');
+        $LI =Getfloat($LI);
+
+        $LS = (1 / 2) + (1.65) * (1 / sqrt(12 * $n));
+        $LS = number_format($LS, 4, ',', '');
+        $LS =Getfloat($LS);
+
+        $promedio = 0;
+        $promedio = ($LI + $LS) / 2;
 
         echo "<p class='alert alert-success'>
         Varianza = σ² = 1/12 = 0,08333   
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        r=" . $promedio .
-        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        M = "  .$redondeoPromedio.
+        r=" . $r .
+
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          n=" . $n .
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-         Confianza=" . $porcentajeConfianza . "%</p>";
+         Confianza=" . $porcentajeConfianza . "%
+         <br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        LI=" . $LI . "
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        LS=" . $LS . "
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        Promedio=" . $promedio . "        
+         </p>";
 
         echo "<table border='1'>";
         echo "<tr class='text-center bg-dark'><td colspan='" . $tamaño . "'> Tus números aleatorios</td></tr>";
