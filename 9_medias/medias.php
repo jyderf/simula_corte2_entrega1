@@ -1,4 +1,6 @@
 <?php include '../formato/head.php'; ?>
+<?php error_reporting(0); //oculta errores
+?>
 <?php
 $formatos = array('.txt'); //aquí pongo los formatos que quiera poner jpg, txt, png, doc, etc.. para el caso sólo txt
 if (isset($_POST['boton'])) {
@@ -18,23 +20,90 @@ if (isset($_POST['boton'])) {
 ?>
 
         <?php
+
+
+
+        $largoElemento = strlen($aux[0]); //obtener el largo de un elemento
+        $largoElemento = $largoElemento - 2; //le quito 2 para q no cuente el cero y la coma,
+        echo "Cantidad decimales = " . $largoElemento . "";
         echo "<h4 align='center'>Contenido del Archivo</h4>";
         $porcentajeConfianza = $_POST['porcentajeConfianza'];
         $n = $numlinea;
+        $cantElementos = $numlinea;
         $m = sqrt($n);
         $intervalo = 1 / $m;
         $cantidadIntervalos = $intervalo * 100;
         $tamaño = intval($m);
-
-
-        $matrizAleatorios = array(array());
-        $inc = 0;
-        for ($i = 0; $i < $tamaño; $i++) { //pasando array a matriz
-            for ($j = 0; $j < $tamaño; $j++) {
-                $matrizAleatorios[$i][$j] = $aux[$inc];
-                $inc++;
+        //INICIA ORGANIZACIÓN TAMAÑO MATRIZ
+        $fil = 0;
+        $resto = 0;
+        for ($i = 1; $i < $cantElementos; $i++) {
+            if (($i % 10 === 0)) {
+                $fil++;
             }
         }
+        if ($fil === 0) {
+            $fil = 1;
+        }
+        $resto = $cantElementos % 10;
+
+
+        //LENANDO MATRIZ E IMPRIMIÉNDOLA
+        $matrizAleatorios = array(array());
+
+        $inc = 0;
+        echo "<table border='1' >";
+        echo "<tr><td colspan='10' align='center' class='bg-dark text-light'>Tus números</td></tr>";
+        for ($i = 0; $i <= $fil; $i++) {
+            echo "<tr>";
+            for ($j = 0; $j < 10; $j++) {
+                $matrizAleatorios[$i][$j] = $aux[$inc];
+                $inc++;
+                echo "<td>" . $matrizAleatorios[$i][$j] . "</td>";
+            }
+            echo "<tr>";
+        }
+        echo "</table>";
+
+
+        $z = 0;
+        //NIVEL DE CONFIANZA Y VALOR DE Z
+        if ($porcentajeConfianza == 75) {
+            $z = 1.15;
+        } else {
+            if ($porcentajeConfianza == 80) {
+                $z = 1.28;
+            } else {
+                if ($porcentajeConfianza == 85) {
+                    $z = 1.44;
+                } else {
+                    if ($porcentajeConfianza == 90) {
+                        $z = 1.65;
+                    } else {
+                        if ($porcentajeConfianza == 92) {
+                            $z = 1.75;
+                        } else {
+                            if ($porcentajeConfianza == 95) {
+                                $z = 1.96;
+                            } else {
+                                if ($porcentajeConfianza == 97.5) {
+                                    $z = 2.24;
+                                } else {
+                                    if ($porcentajeConfianza == 99) {
+                                        $z = 2.58;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        echo"valor z ==>".$z;
+
+
         $r = 0;
         for ($i = 0; $i < $n; $i++) { //promedio
             $r = $r + $aux[$i];
@@ -45,13 +114,13 @@ if (isset($_POST['boton'])) {
         $LI = 0;
         $LS = 0;
 
-        $LI = (1 / 2) - (1.65) * (1 / sqrt(12 * $n));
+        $LI = (1 / 2) - ($z) * (1 / sqrt(12 * $n));
         $LI = number_format($LI, 4, ',', '');
-        $LI =Getfloat($LI);
+        $LI = Getfloat($LI);
 
-        $LS = (1 / 2) + (1.65) * (1 / sqrt(12 * $n));
+        $LS = (1 / 2) + ($z) * (1 / sqrt(12 * $n));
         $LS = number_format($LS, 4, ',', '');
-        $LS =Getfloat($LS);
+        $LS = Getfloat($LS);
 
         $promedio = 0;
         $promedio = ($LI + $LS) / 2;
@@ -60,7 +129,6 @@ if (isset($_POST['boton'])) {
         Varianza = σ² = 1/12 = 0,08333   
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         r=" . $r .
-
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          n=" . $n .
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -74,16 +142,6 @@ if (isset($_POST['boton'])) {
         Promedio=" . $promedio . "        
          </p>";
 
-        echo "<table border='1'>";
-        echo "<tr class='text-center bg-dark'><td colspan='" . $tamaño . "'> Tus números aleatorios</td></tr>";
-        for ($i = 0; $i < $tamaño; $i++) {
-            echo "<tr>";
-            for ($j = 0; $j < $tamaño; $j++) {
-                echo "<td>" . $matrizAleatorios[$i][$j] . "</td>";
-            }
-            echo "</tr>";
-        }
-        echo "</table>";
 
 
         ?>

@@ -25,7 +25,7 @@ if (isset($_POST['boton'])) {
 
 
         $largoElemento = strlen($aux[0]); //obtener el largo de un elemento
-        $largoElemento = $largoElemento - 2; //le quito el primer dígito y la como 0,
+        $largoElemento = $largoElemento - 2; //le quito 2 para q no cuente el cero y la coma,
         echo "Cantidad decimales = " . $largoElemento . "";
         echo "<h4 align='center'>Contenido del Archivo</h4>";
         $porcentajeConfianza = $_POST['porcentajeConfianza'];
