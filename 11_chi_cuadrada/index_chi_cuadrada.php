@@ -19,25 +19,25 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col col-3 mx-3">
             <img src="../img/imgArchivo.jpg" width="200" height="180">
         </div>
 
-        <div class="col">
+        <div class="col col-3">
             
             <P class="alert alert-info">
               El archivo
-                debe tener una extensión .txt y debe llamarse "miarchivo.txt".
+                debe tener una extensión .txt y debe llamarse "chicuadrado.txt".
             </P>
         </div>
 
-        <div class="col">
-            <form method="POST" action="chi_cuadrada.php" enctype="multipart/form-data">
+        <div class="col alert alert-dark">
+            <form method="POST" action="chi_cuadrada.php" enctype="multipart/form-data" class=" container ">
                 <div>
-                    <input type="file" name="archivo" />
+                    <input type="file" name="archivo" class="container mx-2 "/>
                     <br>
                     <br>
-                    <input class='btn btn-danger' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />
+                    <input class='container btn btn-danger col-3 mx-5' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />
 
                 </div>
             </form>

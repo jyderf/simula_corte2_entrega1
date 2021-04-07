@@ -6,10 +6,10 @@ if (isset($_POST['boton'])) {
     $nombreArchivo = $_FILES['archivo']['name'];
     $nombreTmpArchivo = $_FILES['archivo']['tmp_name']; //nombre temporal del archivo
     $ext = substr($nombreArchivo, strrpos($nombreArchivo, '.')); //buscar la posición del último punto del nomre del archivo, es para a partir de ahí extraer la extensión
-    if ((in_array($ext, $formatos) && ($nombreArchivo === 'miarchivo.txt'))) { //si esta extensión está dentro de la regla formatos
+    if ((in_array($ext, $formatos) && ($nombreArchivo === 'chicuadrado.txt'))) { //si esta extensión está dentro de la regla formatos
 
         if (move_uploaded_file($nombreTmpArchivo, "../archivos/$nombreArchivo")) {
-            $archivo = fopen("../archivos/miarchivo.txt", 'r');
+            $archivo = fopen("../archivos/chicuadrado.txt", 'r');
             $numlinea = 0;
             while ($linea = fgets($archivo)) {
                 $aux[] = ($linea); //aquí se llenan los números en el arreglo aux, q luego pasará a una matríz
@@ -144,7 +144,7 @@ if (isset($_POST['boton'])) {
 
 
     <?php echo " <table border='0' align='center'>
-                <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'miarchivo.txt'</div></td></tr>                
+                <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'chicuadrado.txt'</div></td></tr>                
                </table> ";
         }
     }
