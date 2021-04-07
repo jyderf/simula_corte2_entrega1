@@ -1,4 +1,5 @@
 <?php include '../formato/head.php'; ?>
+<?php error_reporting(0); //oculta errores?> 
 <?php
 $formatos = array('.txt'); //aquí pongo los formatos que quiera poner jpg, txt, png, doc, etc.. para el caso sólo txt
 if (isset($_POST['boton'])) {
