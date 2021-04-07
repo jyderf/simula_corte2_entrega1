@@ -1,13 +1,25 @@
 <?php include '../formato/head.php'; ?>
 <?php error_reporting(0); //oculta errores
 ?>
+
 <?php
+$porcentajeConfianza = $_POST['porcentajeConfianza'];
+$validadoPorcentaje = 0;                                                                              //75 80 85 90 92 95 97.5 99
+if (($porcentajeConfianza == 75) || ($porcentajeConfianza == 80) || ($porcentajeConfianza == 85) || ($porcentajeConfianza == 90) || ($porcentajeConfianza == 92) || ($porcentajeConfianza == 95) || ($porcentajeConfianza == 97.5) || ($porcentajeConfianza == 99)) {
+    $validadoPorcentaje = 1;
+} else {
+    if (($porcentajeConfianza != 75) || ($porcentajeConfianza != 80) || ($porcentajeConfianza != 85) || ($porcentajeConfianza != 90) || ($porcentajeConfianza != 92) || ($porcentajeConfianza != 95) || ($porcentajeConfianza != 97.5) || ($porcentajeConfianza != 99)) {
+        $validadoPorcentaje = 0;
+    }
+}
+
+
 $formatos = array('.txt'); //aquí pongo los formatos que quiera poner jpg, txt, png, doc, etc.. para el caso sólo txt
 if (isset($_POST['boton'])) {
     $nombreArchivo = $_FILES['archivo']['name'];
     $nombreTmpArchivo = $_FILES['archivo']['tmp_name']; //nombre temporal del archivo
     $ext = substr($nombreArchivo, strrpos($nombreArchivo, '.')); //buscar la posición del último punto del nomre del archivo, es para a partir de ahí extraer la extensión
-    if ((in_array($ext, $formatos) && ($nombreArchivo === 'medias.txt'))) { //si esta extensión está dentro de la regla formatos
+    if ((in_array($ext, $formatos) && ($nombreArchivo === 'medias.txt'))&&($validadoPorcentaje==1)) { //si esta extensión está dentro de la regla formatos
 
         if (move_uploaded_file($nombreTmpArchivo, "../archivosMedias/$nombreArchivo")) {
             $archivo = fopen("../archivosMedias/medias.txt", 'r');
@@ -27,7 +39,7 @@ if (isset($_POST['boton'])) {
         $largoElemento = $largoElemento - 2; //le quito 2 para q no cuente el cero y la coma,
         echo "Cantidad decimales = " . $largoElemento . "";
         echo "<h4 align='center'>Contenido del Archivo</h4>";
-        $porcentajeConfianza = $_POST['porcentajeConfianza'];
+        
         $n = $numlinea;
         $cantElementos = $numlinea;
         $m = sqrt($n);
@@ -101,7 +113,7 @@ if (isset($_POST['boton'])) {
         }
 
 
-        echo"valor z ==>".$z;
+        echo "valor z ==>" . $z;
 
 
         $r = 0;
@@ -167,7 +179,8 @@ if (isset($_POST['boton'])) {
 
 
     <?php echo " <table border='0' align='center'>
-                <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'medias.txt'</div></td></tr>                
+                <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'medias.txt'</div></td></tr>
+                <tr><td> <br> <div class='alert alert-warning'>Verificar que los porcentajes sean: 75%, 80%, 85%, 90%, 92%, 95%, 97.5% o 99%, no se admite otro. </div></td></tr>                                
                </table> ";
         }
     }

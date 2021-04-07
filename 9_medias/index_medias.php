@@ -7,9 +7,9 @@
         <div class="col">
             <h5>INDICACIÓN: </h5>
             <p>
-                Cargar un archivo con una determinada cantidad de números aleatorios generados
-                previamente con el formato correspondiente, de acuerdo a la imagen. Puede usar una hoja de 
-                cálculo u otro software para obtener estos elementos.
+                Cargar un archivo con una determinada cantidad de números aleatorios entre 0 y 1, de acuerdo a la imagen.
+                 Puede usar una hoja de cálculo u otro software para obtener estos elementos. En los porcentajes sólo son válidos:
+                 75%, 80%, 85%, 90%, 92%, 95%, 97.5% o 99%, no se admite otro.
             </p>
         </div>
 
