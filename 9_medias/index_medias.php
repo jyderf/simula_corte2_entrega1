@@ -1,5 +1,5 @@
 <?php include '../formato/head.php'; ?>
-<h3 align="Center">Prueba de Medias</h3>
+<h3 align="Center">PRUEBA DE MEDIAS</h3>
 <div class="container ">
 
     <div class="row">
@@ -35,8 +35,11 @@
                     <input type="file" name="archivo" />
                     <br>
                     <br>
-                    <input name="porcentajeConfianza" id="porcentajeConfianza" step="0.01" type="number" name="filas" placeholder="Ingrese porcentaje de cofianza" class="col-lg-10 " min="1" max="100"   required>
+
+                    <input name="porcentajeConfianza" id="porcentajeConfianza" step="0.01" type="number" name="filas" placeholder="Ingrese porcentaje de cofianza " class="col-lg-12 " min="1" max="100"   required>
                     <br>
+                    <label for="porcentajeConfianza" class="alert  alert-success">Ingresar sólo porcentajes admitidos</label>
+                    
                     <br>
                     <input class='btn btn-danger' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />
 
