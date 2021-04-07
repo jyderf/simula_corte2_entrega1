@@ -8,7 +8,8 @@
             <h5>INDICACIÓN: </h5>
             <p>
                 Cargar un archivo con una determinada cantidad de números aleatorios generados
-                previamente con el formato correspondiente, de acuerdo a la imagen. 
+                previamente con el formato correspondiente, de acuerdo a la imagen. Puede usar una hoja de 
+                cálculo u otro software para obtener estos elementos.
             </p>
         </div>
 

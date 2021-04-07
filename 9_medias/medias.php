@@ -109,7 +109,7 @@ if (isset($_POST['boton'])) {
 
 
     <?php echo " <table border='0' align='center'>
-                <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'miarchivo.txt'</div></td></tr>                
+                <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'medias.txt'</div></td></tr>                
                </table> ";
         }
     }
