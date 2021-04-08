@@ -20,7 +20,7 @@ if (isset($_POST['boton'])) {
 ?>
 
         <?php
-        echo "<h4 align='center'>Contenido del Archivo</h4>";
+        echo "<h4 align='center'>Resolviendo chi cuadrado</h4>";
         $n = $numlinea;
         $m = sqrt($n);
         $intervalo = 1 / $m;
