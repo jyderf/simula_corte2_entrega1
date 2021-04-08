@@ -49,7 +49,7 @@ if (isset($_POST['boton'])) {
         $largoElemento = strlen($aux[0]); //obtener el largo de un elemento
         $largoElemento = $largoElemento - 2; //le quito 2 para q no cuente el cero y la coma,
         //echo "Cantidad decimales = " . $largoElemento . "";
-        echo "<h4 align='center'>Contenido del Archivo</h4>";
+        echo "<h4 align='center'>Calculando Varianza</h4>";
         $porcentajeConfianza = $_POST['porcentajeConfianza'];
         $n = $numlinea;
         $cantElementos = $numlinea;
@@ -70,11 +70,14 @@ if (isset($_POST['boton'])) {
         }
         $resto = $cantElementos % 10;
 
+        echo"<div class='row container'>";
+
+        echo"<div class='col'>";
         //LENANDO MATRIZ E IMPRIMIÉNDOLA
         $matrizAleatorios = array(array());
         $inc = 0;
         echo "<table border='1' class='small sm  table-bordered'>";
-        echo "<tr><td colspan='10' align='center' class='bg-dark text-light'>Tus números</td></tr>";
+        echo "<tr><td colspan='10' align='center' class='bg-dark text-light '>Tus números</td></tr>";
         for ($i = 0; $i <= $fil; $i++) {
             echo "<tr>";
             for ($j = 0; $j < 10; $j++) {
@@ -85,7 +88,7 @@ if (isset($_POST['boton'])) {
             echo "<tr>";
         }
         echo "</table>";
-        echo "<br>";
+        echo"</div>";
 
         $r = 0;
         for ($i = 0; $i < $n; $i++) { //promedio
@@ -142,7 +145,7 @@ if (isset($_POST['boton'])) {
         $LS = number_format($LS, 8, ',', '');
         $LS = Getfloat($LS);
 
-
+echo"<div class='col'>";
         echo "<p class='alert alert-success'>
         Varianza = σ² = 1/12 = 0,08333   
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -154,14 +157,19 @@ if (isset($_POST['boton'])) {
             " a=" . $restoConfianza . "% a=" . $a .
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          <br>1-a=" . $UNO_menos_a . "
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          <br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          LI (Var)=" . $LI . "
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         <br>
          LS (Var)=" . $LS . "
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
          
          </p>";
+
+         echo"</div>";
+
+         echo"</div>";
 
 
 
@@ -171,7 +179,7 @@ if (isset($_POST['boton'])) {
         <div class="row">
 
             <?php
-            echo "<h4 class='container'>Busca en la tabla Chi Cuadrado χ2, de acuerdo al color indicado </h4>";
+            echo "<h5 class='container'>Busca en la tabla inferior Chi Cuadrado χ2, de acuerdo al color indicado </h5>";
             echo "<p class='container'>Los valores corresponden a los utilizados para encontrar tanto LI, como LS</p>";
             echo "<p class=' mx-4 alert bg-danger text-light'> LI (VAR)  </p>";
             echo "<p class=' mx-4 alert bg-success text-light'> LI (VAR) </p>";

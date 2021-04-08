@@ -38,7 +38,7 @@ if (isset($_POST['boton'])) {
         $largoElemento = strlen($aux[0]); //obtener el largo de un elemento
         $largoElemento = $largoElemento - 2; //le quito 2 para q no cuente el cero y la coma,
         echo "Cantidad decimales = " . $largoElemento . "";
-        echo "<h4 align='center'>Contenido del Archivo</h4>";
+        echo "<h4 align='center'>Calculando con prueba de medias</h4>";
         
         $n = $numlinea;
         $cantElementos = $numlinea;
@@ -64,7 +64,7 @@ if (isset($_POST['boton'])) {
         $matrizAleatorios = array(array());
 
         $inc = 0;
-        echo "<table border='1' >";
+        echo "<table border='1' class='small sm  table-bordered' align='center' >";
         echo "<tr><td colspan='10' align='center' class='bg-dark text-light'>Tus números</td></tr>";
         for ($i = 0; $i <= $fil; $i++) {
             echo "<tr>";

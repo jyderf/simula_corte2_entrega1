@@ -52,7 +52,7 @@ if (isset($_POST['boton'])) {
 
             <?php
             echo "<div class='col'>";
-            echo "<table align='center' border='2'>";
+            echo "<table align='center' border='2' class='small sm  table-bordered'>";
             echo "<tr class='alert alert-dark bg-dark text-light'><td align='center' colspan='" . $cantidadIntervalos . "'>Tus números aleatorios</td></tr>";
             $z = 0;
 
@@ -106,7 +106,7 @@ if (isset($_POST['boton'])) {
 
 
             echo "<div class='col'>";
-            echo "<table border='2'>";
+            echo "<table border='2' class='small sm  table-bordered'>";
             echo "<tr><td colspan='2' class='bg-dark  text-light'>Intervalos</td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 echo "<tr><td>" . $minimoEnIntervalo[$i] . "</td>";
@@ -130,7 +130,7 @@ if (isset($_POST['boton'])) {
 
 
             echo "<div class='col'>";
-            echo "<table border='2'>";
+            echo "<table border='2' class='small sm  table-bordered'>";
             echo "<tr><td colspan='1' class='bg-dark  text-light'>Oi</td><td colspan='1' class='bg-dark  text-light'>Ei</td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 echo "<tr>";

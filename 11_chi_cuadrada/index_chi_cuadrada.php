@@ -46,3 +46,5 @@
 
 
 </div>
+
+<?php include '../formato/floor.php'; ?>
