@@ -98,10 +98,10 @@ if (isset($_POST['boton'])) {
             echo "<table class='small sm  table-bordered'>";
             echo "<tr class='bg-dark  text-light'><td colspan='2' > Intervalos </td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
-                echo"<tr>";
+                echo "<tr>";
                 echo "<td>" . $minimoEnIntervalo[$i] . "</td>";
                 echo "<td>" . $maximoEnIntervalo[$i] . "</td>";
-                echo"</tr>";
+                echo "</tr>";
             }
             echo "</table>";
             echo "</div>";
@@ -117,16 +117,19 @@ if (isset($_POST['boton'])) {
                 $f_observada[$i] = $contador;
                 $contador = 0;
             }
-
+            $suma = 0;
             echo "<div class='col '>"; //IMPRIMIR FRECUENCIA OBSERVADA
             echo "<table border='2' class='small sm  table-bordered'>";
             echo "<tr><td colspan='1' class='bg-dark  text-light'>Oi</td><td colspan='1' class='bg-dark  text-light'>Ei</td><td colspan='1' class='bg-dark  text-light'> ( (Ei - Oi)^2 ) / (Ei) </td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 echo "<tr>";
-                echo "<td>" . ($f_observada[$i]) . "</td><td>" . $n / $m . "</td><td class='text-center'>" . floatval((pow((($n / $m) - ($f_observada[$i])), 2)) / ($n/$m)) . "</td>";
+                echo "<td>" . ($f_observada[$i]) . "</td><td>" . $n / $m . "</td><td class='text-center'>" . floatval((pow((($n / $m) - ($f_observada[$i])), 2)) / ($n / $m)) . "</td>";
                 echo "</tr>";
+                $suma = $suma + (floatval((pow((($n / $m) - ($f_observada[$i])), 2)) / ($n / $m)));
             }
+            echo "<tr class='Container bg-info text-light'><td colspan='3' align='right'> Estadístico = " . $suma . "</td></tr>";
             echo "</table>";
+
             echo "</div>";
         } else {
             ?>
