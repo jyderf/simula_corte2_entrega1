@@ -94,12 +94,14 @@ if (isset($_POST['boton'])) {
                 }
             }
 
-            echo "<div class='col'>";
-            echo "<table border='2' class='small sm  table-bordered'>";
-            echo "<tr><td colspan='2' class='bg-dark  text-light'>Intervalos</td></tr>";
+            echo "<div class=' table-bordered'>";
+            echo "<table class='small sm  table-bordered'>";
+            echo "<tr class='bg-dark  text-light'><td colspan='2' > Intervalos </td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
-                echo "<tr><td>" . $minimoEnIntervalo[$i] . "</td>";
-                echo "<td>" . $maximoEnIntervalo[$i] . "</td></tr>";
+                echo"<tr>";
+                echo "<td>" . $minimoEnIntervalo[$i] . "</td>";
+                echo "<td>" . $maximoEnIntervalo[$i] . "</td>";
+                echo"</tr>";
             }
             echo "</table>";
             echo "</div>";
@@ -116,7 +118,7 @@ if (isset($_POST['boton'])) {
                 $contador = 0;
             }
 
-            echo "<div class='col'>"; //IMPRIMIR FRECUENCIA OBSERVADA
+            echo "<div class='col '>"; //IMPRIMIR FRECUENCIA OBSERVADA
             echo "<table border='2' class='small sm  table-bordered'>";
             echo "<tr><td colspan='1' class='bg-dark  text-light'>Oi</td><td colspan='1' class='bg-dark  text-light'>Ei</td><td colspan='1' class='bg-dark  text-light'> ( (Ei - Oi)^2 ) / (Ei) </td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
