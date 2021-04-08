@@ -121,7 +121,7 @@ if (isset($_POST['boton'])) {
             echo "<tr><td colspan='1' class='bg-dark  text-light'>Oi</td><td colspan='1' class='bg-dark  text-light'>Ei</td><td colspan='1' class='bg-dark  text-light'> ( (Ei - Oi)^2 ) / (Ei) </td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 echo "<tr>";
-                echo "<td>" . ($f_observada[$i]) . "</td><td>" . $n / $m . "</td><td class='text-center'>" . floatval((pow((($n / $m) - ($f_observada[$i])), 2)) / ($f_observada[$i])) . "</td>";
+                echo "<td>" . ($f_observada[$i]) . "</td><td>" . $n / $m . "</td><td class='text-center'>" . floatval((pow((($n / $m) - ($f_observada[$i])), 2)) / ($n/$m)) . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
