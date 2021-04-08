@@ -2,6 +2,28 @@
 <?php error_reporting(0); //oculta errores
 ?>
 
+<?php //lectura del archivo chi cuadrado
+$fichero = file_get_contents("../recurso_chi/recurso_chi.txt");
+$inc_vec = 0;
+$lineas = explode("\n", $fichero);
+foreach ($lineas as $linea) {
+    $valores = explode(" ", preg_replace('/\s\s+/', ' ', trim($linea)));
+    $vector_chi[$inc_vec] = $valores[0];
+    $inc_vec++;
+}
+$inc = 0;
+$matriz_chi = array(array()); //creando y llenando matriz chi
+for ($i = 0; $i < 58; $i++) {
+    echo "<tr >";
+    for ($j = 0; $j < 30; $j++) {
+        $matriz_chi[$i][$j] = $vector_chi[$inc];
+
+        $inc++;
+    }
+    echo "<tr>";
+}
+?>
+
 <?php
 $formatos = array('.txt'); //aquí pongo los formatos que quiera poner jpg, txt, png, doc, etc.. para el caso sólo txt
 if (isset($_POST['boton'])) {
@@ -26,7 +48,7 @@ if (isset($_POST['boton'])) {
 
         $largoElemento = strlen($aux[0]); //obtener el largo de un elemento
         $largoElemento = $largoElemento - 2; //le quito 2 para q no cuente el cero y la coma,
-        echo "Cantidad decimales = " . $largoElemento . "";
+        //echo "Cantidad decimales = " . $largoElemento . "";
         echo "<h4 align='center'>Contenido del Archivo</h4>";
         $porcentajeConfianza = $_POST['porcentajeConfianza'];
         $n = $numlinea;
@@ -48,12 +70,10 @@ if (isset($_POST['boton'])) {
         }
         $resto = $cantElementos % 10;
 
-
         //LENANDO MATRIZ E IMPRIMIÉNDOLA
         $matrizAleatorios = array(array());
-
         $inc = 0;
-        echo "<table border='1' >";
+        echo "<table border='1' class='small sm  table-bordered'>";
         echo "<tr><td colspan='10' align='center' class='bg-dark text-light'>Tus números</td></tr>";
         for ($i = 0; $i <= $fil; $i++) {
             echo "<tr>";
@@ -65,7 +85,7 @@ if (isset($_POST['boton'])) {
             echo "<tr>";
         }
         echo "</table>";
-
+        echo "<br>";
 
         $r = 0;
         for ($i = 0; $i < $n; $i++) { //promedio
@@ -73,47 +93,74 @@ if (isset($_POST['boton'])) {
         }
         $r = $r / $n;
 
-
         $LI = 0;
         $LS = 0;
-
-        $LI = (1 / 2) - (1.65) * (1 / sqrt(12 * $n));
-        $LI = number_format($LI, 4, ',', '');
-        $LI = Getfloat($LI);
-
-        $LS = (1 / 2) + (1.65) * (1 / sqrt(12 * $n));
-        $LS = number_format($LS, 4, ',', '');
-        $LS = Getfloat($LS);
 
         $promedio = 0;
         $promedio = ($LI + $LS) / 2;
 
         //$largoElemento=(pow(10,$largoElemento));
-
         $restoConfianza = 100 - $porcentajeConfianza;
 
         $a = (($restoConfianza / 2) / 100);
-
         $UNO_menos_a = 1 - $a;
+
+        //Buscando numerador Li = a/n-1 (se necesitaría lo que vale a número de elementos  -1)
+        $numerador_LI = 0;
+        $posicionFila = 0;
+        for ($i = 0; $i < 58; $i++) {
+            if (($n - 1) == $matriz_chi[$i][0])
+                $posicionFila = $i;
+        }
+        $posicionColumna = 0;
+        for ($j = 0; $j < 30; $j++) {
+            if ($a == $matriz_chi[0][$j])
+                $posicionColumna = $j;
+        }
+        $numerador_LI = $matriz_chi[$posicionFila][$posicionColumna];
+
+         //Buscando numerador LS = 1-a/12*n-1 (se necesitaría lo que vale a número de elementos  -1)
+         $numerador_LS = 0;
+         $posicionFila = 0;
+         for ($i = 0; $i < 58; $i++) {
+             if (($n - 1) == $matriz_chi[$i][0])
+                 $posicionFila = $i;
+         }
+         $posicionColumna = 0;
+         for ($j = 0; $j < 30; $j++) {
+             if ($UNO_menos_a == $matriz_chi[0][$j])
+                 $posicionColumna = $j;
+         }
+         $numerador_LS = $matriz_chi[$posicionFila][$posicionColumna];
+
+
+        $LI = $numerador_LI / (12 * ($n - 1));
+        $LI = number_format($LI, 8, ',', '');
+        $LI = Getfloat($LI);
+
+        $LS = $numerador_LS/(12*($n-1));
+        $LS = number_format($LS, 8, ',', '');
+        $LS = Getfloat($LS);
+
 
         echo "<p class='alert alert-success'>
         Varianza = σ² = 1/12 = 0,08333   
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         r=" . $r .
-
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          n=" . $n .
             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-         Confianza=" . $porcentajeConfianza . " a=" . $restoConfianza . "% a=" . $a . 
-         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-         <br>1-a=".$UNO_menos_a."
+         Confianza=" . $porcentajeConfianza .
+            " a=" . $restoConfianza . "% a=" . $a .
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         <br>1-a=" . $UNO_menos_a . "
          <br>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        LI=" . $LI . "
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        LS=" . $LS . "
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        Promedio=" . $promedio . "        
+         LI (Var)=" . $LI . "
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         LS (Var)=" . $LS . "
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         
          </p>";
 
 
@@ -124,6 +171,53 @@ if (isset($_POST['boton'])) {
         <div class="row">
 
             <?php
+            echo "<h4 class='container'>Busca en la tabla Chi Cuadrado χ2, de acuerdo al color indicado </h4>";
+            echo "<p class='container'>Los valores corresponden a los utilizados para encontrar tanto LI, como LS</p>";
+            echo "<p class=' mx-4 alert bg-danger text-light'> LI (VAR)  </p>";
+            echo "<p class=' mx-4 alert bg-success text-light'> LI (VAR) </p>";
+            echo "<p class=' mx-4 alert text-info'><= Puedes desplazar la siguiente tabla horizontalmente.=> </p>";
+            
+            // Abriendo el archivo
+
+
+
+            $inc = 0;
+            echo "<div class='table-responsive my-2 mx-3  mx-4'>";
+            echo "<table  class='small  table-bordered '>";
+            echo "<tbody>";
+            for ($i = 0; $i < 58; $i++) {
+                echo "<tr >";
+                for ($j = 0; $j < 30; $j++) {
+                    if ($numerador_LI == $matriz_chi[$i][$j]) {
+                        echo "<td class='bg-danger text-light'>" . $matriz_chi[$i][$j] . "</td>";
+                        $inc++;
+                    }else{
+                        if ($numerador_LS == $matriz_chi[$i][$j]) {
+                            echo "<td class='bg-success text-light'>" . $matriz_chi[$i][$j] . "</td>";
+                            $inc++;
+                        }else{
+                            echo "<td>" . $matriz_chi[$i][$j] . "</td>";
+                            $inc++;
+                        }
+                            
+
+                    }
+                   
+                    
+                }
+                echo "<tr>";
+            }
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
+            echo "</div>";
+
+
+
+
+
+
+
 
 
             ?>

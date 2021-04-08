@@ -139,6 +139,13 @@ if (isset($_POST['boton'])) {
             }
             echo "</table>";
             echo "</div>";
+
+
+            
+
+
+
+
         } else {
             ?>
 
