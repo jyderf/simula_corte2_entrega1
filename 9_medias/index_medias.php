@@ -6,7 +6,7 @@
 
         <div class="col">
             <h5>INDICACIÓN: </h5>
-            <p>
+            <p class="small sm">
                 Cargar un archivo con una determinada cantidad de números aleatorios entre 0 y 1, de acuerdo a la imagen.
                  Puede usar una hoja de cálculo u otro software para obtener estos elementos. En los porcentajes sólo son válidos:
                  75%, 80%, 85%, 90%, 92%, 95%, 97.5% o 99%, no se admite otro.
@@ -38,7 +38,7 @@
 
                     <input name="porcentajeConfianza" id="porcentajeConfianza" step="0.01" type="number" name="filas" placeholder="Ingrese porcentaje de cofianza " class="col-lg-12 " min="1" max="100"   required>
                     <br>
-                    <label for="porcentajeConfianza" class="alert  alert-success">Ingresar sólo porcentajes admitidos</label>
+                    <label for="porcentajeConfianza" class="alert  alert-success small sm">Ingresar sólo porcentajes admitidos</label>
                     
                     <br>
                     <input class='btn btn-danger' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />

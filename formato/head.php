@@ -17,7 +17,9 @@
 
     <link rel="stylesheet" href="../styles.css" />
 
-    
+
+
+
 
 </head>
 
@@ -85,6 +87,6 @@
                 <button type="button" class="btn btn-light btn-sm text-left" onclick="location.href='../11_chi_cuadrada/index_chi_cuadrada.php'">Prueba de Chi Cuadrada</button>
             </ul>
         </div>
-        
+
 
     </div>

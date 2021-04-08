@@ -1,5 +1,6 @@
 <?php include '../formato/head.php'; ?>
-<?php error_reporting(0); //oculta errores?> 
+<?php error_reporting(0); //oculta errores
+?>
 <?php
 $formatos = array('.txt'); //aquí pongo los formatos que quiera poner jpg, txt, png, doc, etc.. para el caso sólo txt
 if (isset($_POST['boton'])) {
@@ -26,17 +27,14 @@ if (isset($_POST['boton'])) {
 
         $cantidadIntervalos = $intervalo * 100;
 
-        echo$n."<== n <br>";
-        echo$m."<== m <br>";
-        echo$intervalo."<== intervalo <br>";
-        echo$cantidadIntervalos."<== cantidadIntervalos <br>";
-
-
+        echo $n . "<== n <br>";
+        echo $m . "<== m <br>";
+        echo $intervalo . "<== intervalo <br>";
+        echo $cantidadIntervalos . "<== cantidadIntervalos <br>";
 
         $matrizAleatorios = array(array());
         $indiceCelda = array(array());
         $z = 0;
-
         for ($i = 0; $i < $cantidadIntervalos; $i++) {
             for ($j = 0; $j < $cantidadIntervalos; $j++) {
                 $matrizAleatorios[$i][$j] = $aux[$z]; //el arreglo aux, pasa a la matrizAleatorios
@@ -44,31 +42,24 @@ if (isset($_POST['boton'])) {
                 $z++;
             }
         }
-
         echo "<div class='alert alert-success '> n=" . $n . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=raiz(n) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=" . $cantidadIntervalos . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Oi=Frecuencia observada&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ei=Frecuencia esperada</div>";
         ?>
 
         <div class="row">
-
             <?php
             echo "<div class='col'>";
             echo "<table align='center' border='2' class='small sm  table-bordered'>";
             echo "<tr class='alert alert-dark bg-dark text-light'><td align='center' colspan='" . $cantidadIntervalos . "'>Tus números aleatorios</td></tr>";
             $z = 0;
-
             $minimoEnIntervalo = array();
             $incrementadorMinimo = 0;
             $maximoEnIntervalo = array();
             $inccrementadorMaximo = 0;
             $arrayAleatorios = array();
-
-
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 echo "<tr class=''>";
                 for ($j = 0; $j < $cantidadIntervalos; $j++) {
                     echo "<td class='bg-light'>" .  ($matrizAleatorios[$i][$j]) . "</td>";
-
-
 
                     if (($i === 0) && ($j === 0)) {
                         $minimoEnIntervalo[$incrementadorMinimo] = 0;
@@ -91,7 +82,6 @@ if (isset($_POST['boton'])) {
             echo "</table>";
             echo "</div>";
 
-
             ?>
 
             <?php //pasando la matriz a un array
@@ -104,7 +94,6 @@ if (isset($_POST['boton'])) {
                 }
             }
 
-
             echo "<div class='col'>";
             echo "<table border='2' class='small sm  table-bordered'>";
             echo "<tr><td colspan='2' class='bg-dark  text-light'>Intervalos</td></tr>";
@@ -114,13 +103,12 @@ if (isset($_POST['boton'])) {
             }
             echo "</table>";
             echo "</div>";
-            
 
-            $f_observada = array();
+            $f_observada = array(); //CONTAR FRECUENCIA OBSERVADA
             $contador = 0;
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 for ($j = 0; $j < $n; $j++) {
-                    if ((($arrayAleatorios[$j]) <= ($maximoEnIntervalo[$i]))&&(($arrayAleatorios[$j])>=($minimoEnIntervalo[$i]))) {
+                    if ((($arrayAleatorios[$j]) <= ($maximoEnIntervalo[$i])) && (($arrayAleatorios[$j]) >= ($minimoEnIntervalo[$i]))) {
                         $contador++;
                     }
                 }
@@ -128,27 +116,18 @@ if (isset($_POST['boton'])) {
                 $contador = 0;
             }
 
-
-            echo "<div class='col'>";
+            echo "<div class='col'>"; //IMPRIMIR FRECUENCIA OBSERVADA
             echo "<table border='2' class='small sm  table-bordered'>";
-            echo "<tr><td colspan='1' class='bg-dark  text-light'>Oi</td><td colspan='1' class='bg-dark  text-light'>Ei</td></tr>";
+            echo "<tr><td colspan='1' class='bg-dark  text-light'>Oi</td><td colspan='1' class='bg-dark  text-light'>Ei</td><td colspan='1' class='bg-dark  text-light'> ( (Ei - Oi)^2 ) / (Ei) </td></tr>";
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
                 echo "<tr>";
-                echo "<td>" . $f_observada[$i] . "</td><td>" . $n/$m. "</td>";
+                echo "<td>" . ($f_observada[$i]) . "</td><td>" . $n / $m . "</td><td class='text-center'>" . floatval((pow((($n / $m) - ($f_observada[$i])), 2)) / ($f_observada[$i])) . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
             echo "</div>";
-
-
-            
-
-
-
-
         } else {
             ?>
-
 
     <?php echo " <table border='0' align='center'>
                 <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'chicuadrado.txt'</div></td></tr>                
@@ -157,7 +136,6 @@ if (isset($_POST['boton'])) {
     }
     ?>
 
-
     <?php
     function Getfloat($str) //funciòn para convertir cualquier string con decimales a un float
     {
@@ -165,21 +143,14 @@ if (isset($_POST['boton'])) {
             $str = str_replace(".", "", $str); // replace dots (thousand seps) with blancs
             $str = str_replace(",", ".", $str); // replace ',' with '.'
         }
-
         if (preg_match("#([0-9\.]+)#", $str, $match)) { // search for number that may contain '.'
             return floatval($match[0]);
         } else {
             return floatval($str); // take some last chances with floatval
         }
     }
-
-   
     ?>
 
-    <?php
-
-
-    ?>
         </div>
         <table border="0" align="center">
             <tr>

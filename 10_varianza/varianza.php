@@ -70,9 +70,9 @@ if (isset($_POST['boton'])) {
         }
         $resto = $cantElementos % 10;
 
-        echo"<div class='row container'>";
+        echo "<div class='row container'>";
 
-        echo"<div class='col'>";
+        echo "<div class='col'>";
         //LENANDO MATRIZ E IMPRIMIÉNDOLA
         $matrizAleatorios = array(array());
         $inc = 0;
@@ -88,7 +88,7 @@ if (isset($_POST['boton'])) {
             echo "<tr>";
         }
         echo "</table>";
-        echo"</div>";
+        echo "</div>";
 
         $r = 0;
         for ($i = 0; $i < $n; $i++) { //promedio
@@ -122,30 +122,30 @@ if (isset($_POST['boton'])) {
         }
         $numerador_LI = $matriz_chi[$posicionFila][$posicionColumna];
 
-         //Buscando numerador LS = 1-a/12*n-1 (se necesitaría lo que vale a número de elementos  -1)
-         $numerador_LS = 0;
-         $posicionFila = 0;
-         for ($i = 0; $i < 58; $i++) {
-             if (($n - 1) == $matriz_chi[$i][0])
-                 $posicionFila = $i;
-         }
-         $posicionColumna = 0;
-         for ($j = 0; $j < 30; $j++) {
-             if ($UNO_menos_a == $matriz_chi[0][$j])
-                 $posicionColumna = $j;
-         }
-         $numerador_LS = $matriz_chi[$posicionFila][$posicionColumna];
+        //Buscando numerador LS = 1-a/12*n-1 (se necesitaría lo que vale a número de elementos  -1)
+        $numerador_LS = 0;
+        $posicionFila = 0;
+        for ($i = 0; $i < 58; $i++) {
+            if (($n - 1) == $matriz_chi[$i][0])
+                $posicionFila = $i;
+        }
+        $posicionColumna = 0;
+        for ($j = 0; $j < 30; $j++) {
+            if ($UNO_menos_a == $matriz_chi[0][$j])
+                $posicionColumna = $j;
+        }
+        $numerador_LS = $matriz_chi[$posicionFila][$posicionColumna];
 
 
         $LI = $numerador_LI / (12 * ($n - 1));
         $LI = number_format($LI, 8, ',', '');
         $LI = Getfloat($LI);
 
-        $LS = $numerador_LS/(12*($n-1));
+        $LS = $numerador_LS / (12 * ($n - 1));
         $LS = number_format($LS, 8, ',', '');
         $LS = Getfloat($LS);
 
-echo"<div class='col'>";
+        echo "<div class='col'>";
         echo "<p class='alert alert-success'>
         Varianza = σ² = 1/12 = 0,08333   
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -167,9 +167,9 @@ echo"<div class='col'>";
          
          </p>";
 
-         echo"</div>";
+        echo "</div>";
 
-         echo"</div>";
+        echo "</div>";
 
 
 
@@ -183,49 +183,44 @@ echo"<div class='col'>";
             echo "<p class='container'>Los valores corresponden a los utilizados para encontrar tanto LI, como LS</p>";
             echo "<p class=' mx-4 alert bg-danger text-light'> LI (VAR)  </p>";
             echo "<p class=' mx-4 alert bg-success text-light'> LI (VAR) </p>";
-            echo "<p class=' mx-4 alert text-info'><= Puedes desplazar la siguiente tabla horizontalmente.=> </p>";
-            
+            echo "<p class=' mx-4 alert alert-danger '><= Busca desplazándote horizontal o verticalmente.=> </p>";
+
+
             // Abriendo el archivo
 
-
-
+           
+            echo"<div class='col'>";
             $inc = 0;
-            echo "<div class='table-responsive my-2 mx-3  mx-4'>";
+            echo "<div class='table-responsive my-2 mx-3 col-11  '>";
             echo "<table  class='small  table-bordered '>";
             echo "<tbody>";
+            
             for ($i = 0; $i < 58; $i++) {
                 echo "<tr >";
                 for ($j = 0; $j < 30; $j++) {
                     if ($numerador_LI == $matriz_chi[$i][$j]) {
                         echo "<td class='bg-danger text-light'>" . $matriz_chi[$i][$j] . "</td>";
                         $inc++;
-                    }else{
+                    } else {
                         if ($numerador_LS == $matriz_chi[$i][$j]) {
                             echo "<td class='bg-success text-light'>" . $matriz_chi[$i][$j] . "</td>";
                             $inc++;
-                        }else{
+                        } else {
                             echo "<td>" . $matriz_chi[$i][$j] . "</td>";
                             $inc++;
                         }
-                            
-
                     }
-                   
-                    
                 }
                 echo "<tr>";
             }
             echo "</tbody>";
+
             echo "</table>";
             echo "</div>";
             echo "</div>";
+            echo"</div>";
 
-
-
-
-
-
-
+           
 
 
             ?>

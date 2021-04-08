@@ -6,7 +6,7 @@
 
         <div class="col">
             <h5>INDICACIÓN: </h5>
-            <p>
+            <p class="small sm">
                 Cargar un archivo con una determinada cantidad de números aleatorios generados
                 previamente con el formato correspondiente, de acuerdo a la imagen. Puede usar una hoja de 
                 cálculo u otro software para obtener estos elementos.

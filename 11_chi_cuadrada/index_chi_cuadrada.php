@@ -6,7 +6,7 @@
 
         <div class="col">
             <h5>INDICACIÓN: </h5>
-            <p>
+            <p class="small sm">
                 Cargar un archivo con una determinada cantidad de números aleatorios generados
                 previamente con el formato correspondiente. Como los valores van de 0 a 1,
                 cada elemento debe generarse entre 1 y 999, luego debe dividirse entre 1000. El contenido pueden obtenerse
