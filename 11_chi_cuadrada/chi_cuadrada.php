@@ -20,69 +20,75 @@ if (isset($_POST['boton'])) {
 ?>
 
         <?php
-        echo "<h4 align='center'>Resolviendo chi cuadrado</h4>";
-        $n = $numlinea;
-        $m = sqrt($n);
-        $intervalo = 1 / $m;
+    $n = $numlinea;
+        if ($n === 100) {
 
-        $cantidadIntervalos = $intervalo * 100;
 
-        echo $n . "<== n <br>";
-        echo $m . "<== m <br>";
-        echo $intervalo . "<== intervalo <br>";
-        echo $cantidadIntervalos . "<== cantidadIntervalos <br>";
 
-        $matrizAleatorios = array(array());
-        $indiceCelda = array(array());
-        $z = 0;
-        for ($i = 0; $i < $cantidadIntervalos; $i++) {
-            for ($j = 0; $j < $cantidadIntervalos; $j++) {
-                $matrizAleatorios[$i][$j] = $aux[$z]; //el arreglo aux, pasa a la matrizAleatorios
-                $indiceCelda[$j][$i] = $z;
-                $z++;
-            }
-        }
-        echo "<div class='alert alert-success '> n=" . $n . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=raiz(n) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=" . $cantidadIntervalos . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Oi=Frecuencia observada&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ei=Frecuencia esperada</div>";
-        ?>
+            echo "<h4 align='center'>Resolviendo chi cuadrado</h4>";
+            
+            $m = sqrt($n);
+            $intervalo = 1 / $m;
 
-        <div class="row">
-            <?php
-            echo "<div class='col'>";
-            echo "<table align='center' border='2' class='small sm  table-bordered'>";
-            echo "<tr class='alert alert-dark bg-dark text-light'><td align='center' colspan='" . $cantidadIntervalos . "'>Tus números aleatorios</td></tr>";
+            $cantidadIntervalos = $intervalo * 100;
+            /*
+            echo $n . "<== n <br>";
+            echo $m . "<== m <br>";
+            echo $intervalo . "<== intervalo <br>";
+            echo $cantidadIntervalos . "<== cantidadIntervalos <br>";
+            */
+
+            $matrizAleatorios = array(array());
+            $indiceCelda = array(array());
             $z = 0;
-            $minimoEnIntervalo = array();
-            $incrementadorMinimo = 0;
-            $maximoEnIntervalo = array();
-            $inccrementadorMaximo = 0;
-            $arrayAleatorios = array();
             for ($i = 0; $i < $cantidadIntervalos; $i++) {
-                echo "<tr class=''>";
                 for ($j = 0; $j < $cantidadIntervalos; $j++) {
-                    echo "<td class='bg-light'>" .  ($matrizAleatorios[$i][$j]) . "</td>";
-
-                    if (($i === 0) && ($j === 0)) {
-                        $minimoEnIntervalo[$incrementadorMinimo] = 0;
-                        $incrementadorMinimo++;
-                    } else {
-                        if (($j === 0) && ($i > 0)) {
-                            $minimoEnIntervalo[$incrementadorMinimo] = (number_format(($z / 100), 3) + 0.001);
-                            $incrementadorMinimo++;
-                        } else {
-                            if ($j == ($cantidadIntervalos - 1)) {
-                                $maximoEnIntervalo[$inccrementadorMaximo] = (number_format(($z / 100), 3) + 0.01);
-                                $inccrementadorMaximo++;
-                            }
-                        }
-                    }
+                    $matrizAleatorios[$i][$j] = $aux[$z]; //el arreglo aux, pasa a la matrizAleatorios
+                    $indiceCelda[$j][$i] = $z;
                     $z++;
                 }
-                echo "</tr>";
             }
-            echo "</table>";
-            echo "</div>";
+            echo "<div class='alert alert-success '> n=" . $n . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=raiz(n) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=" . $cantidadIntervalos . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Oi=Frecuencia observada&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ei=Frecuencia esperada</div>";
+        ?>
 
-            ?>
+            <div class="row">
+                <?php
+                echo "<div class='col'>";
+                echo "<table align='center' border='2' class='small sm  table-bordered'>";
+                echo "<tr class='alert alert-dark bg-dark text-light'><td align='center' colspan='" . $cantidadIntervalos . "'>Tus números aleatorios</td></tr>";
+                $z = 0;
+                $minimoEnIntervalo = array();
+                $incrementadorMinimo = 0;
+                $maximoEnIntervalo = array();
+                $inccrementadorMaximo = 0;
+                $arrayAleatorios = array();
+                for ($i = 0; $i < $cantidadIntervalos; $i++) {
+                    echo "<tr class=''>";
+                    for ($j = 0; $j < $cantidadIntervalos; $j++) {
+                        echo "<td class='bg-light'>" .  ($matrizAleatorios[$i][$j]) . "</td>";
+
+                        if (($i === 0) && ($j === 0)) {
+                            $minimoEnIntervalo[$incrementadorMinimo] = 0;
+                            $incrementadorMinimo++;
+                        } else {
+                            if (($j === 0) && ($i > 0)) {
+                                $minimoEnIntervalo[$incrementadorMinimo] = (number_format(($z / 100), 3) + 0.001);
+                                $incrementadorMinimo++;
+                            } else {
+                                if ($j == ($cantidadIntervalos - 1)) {
+                                    $maximoEnIntervalo[$inccrementadorMaximo] = (number_format(($z / 100), 3) + 0.01);
+                                    $inccrementadorMaximo++;
+                                }
+                            }
+                        }
+                        $z++;
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
+                echo "</div>";
+
+                ?>
 
             <?php //pasando la matriz a un array
             $arrayAleatorios = array();
@@ -132,13 +138,18 @@ if (isset($_POST['boton'])) {
 
             echo "</div>";
         } else {
+            echo " <table border='0' align='center'>
+                <tr><td> <br> <div class='alert alert-danger'>El archivo debe tener sólo 100 números aleatorios</div></td></tr>                
+               </table> ";
+        }
+    } else {
             ?>
 
     <?php echo " <table border='0' align='center'>
                 <tr><td> <br> <div class='alert alert-danger'>Archivo no permitido! Debe tener extensión '.txt' y llamarse 'chicuadrado.txt'</div></td></tr>                
                </table> ";
-        }
     }
+}
     ?>
 
     <?php
@@ -156,13 +167,13 @@ if (isset($_POST['boton'])) {
     }
     ?>
 
-        </div>
-        <table border="0" align="center">
-            <tr>
-                <td>
-                    <input type="button" value="<< Página anterior" onClick="history.go(-1);" class="btn btn-success btn-xs">
-                </td>
-            </tr>
-        </table>
+            </div>
+            <table border="0" align="center">
+                <tr>
+                    <td>
+                        <input type="button" value="<< Página anterior" onClick="history.go(-1);" class="btn btn-success btn-xs">
+                    </td>
+                </tr>
+            </table>
 
-        <?php include '../formato/floor.php'; ?>
+            <?php include '../formato/floor.php'; ?>

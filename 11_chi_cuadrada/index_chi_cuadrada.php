@@ -7,11 +7,11 @@
         <div class="col">
             <h5>INDICACIÓN: </h5>
             <p class="small sm">
-                Cargar un archivo con una determinada cantidad de números aleatorios generados
-                previamente con el formato correspondiente. Como los valores van de 0 a 1,
-                cada elemento debe generarse entre 1 y 999, luego debe dividirse entre 1000. El contenido pueden obtenerse
-                en una hoja de cálculo o en otro software; una vez logrados, pegarlos en un archivo de texto en forma de columna,
-                 tal como se ve en la figura.
+                Cargar un archivo .txt con 100 los valores vayan de 0 a 1.
+               El contenido pueden obtenerse en una hoja de cálculo o en otro software; una vez logrados, 
+                pegarlos en un archivo de texto en forma de columna, tal como se ve en la figura inferior izquierda.
+                Configurar las características del archivo en la tabla inferior para no tener inconvenientes
+                con el proceso. 
             </p>
         </div>
 
@@ -20,23 +20,39 @@
 
     <div class="row">
         <div class="col col-3 mx-3">
-            <img src="../img/imgArchivo.jpg" width="200" height="180">
+            <img src="../img/imgArchivo.jpg" width="160" height="142">
         </div>
 
         <div class="col col-3">
-            
-            <P class="alert alert-info">
-              El archivo
-                debe tener una extensión .txt y debe llamarse "chicuadrado.txt".
-            </P>
+
+            <table class=" small sm table-bordered">
+                <tr class="bg-dark text-light text-center">
+                    <td colspan="2">Características del archivo</td>
+                </tr>
+                <tr>
+                    <td>Extensión</td>
+                    <td>.txt</td>
+                </tr>
+                <tr>
+                    <td>Nombre</td>
+                    <td>chicuadrado.txt</td>
+                </tr>
+                <tr>
+                    <td>Cantidad elementos</td>
+                    <td>100</td>
+                </tr>
+            </table>
+
+           
         </div>
 
         <div class="col alert alert-dark">
             <form method="POST" action="chi_cuadrada.php" enctype="multipart/form-data" class=" container ">
                 <div>
-                    <input type="file" name="archivo" class="container mx-2 "/>
-                    <br>
-                    <br>
+                    <input type="file" name="archivo" class="container mx-1 col-14 " />
+                   <br><br>
+
+
                     <input class='container btn btn-danger col-3 mx-5' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />
 
                 </div>
