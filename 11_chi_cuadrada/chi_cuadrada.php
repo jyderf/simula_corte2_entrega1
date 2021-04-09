@@ -51,7 +51,7 @@ if (isset($_POST['boton'])) {
             echo "<div class='alert alert-success '> n=" . $n . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=raiz(n) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m=" . $cantidadIntervalos . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Oi=Frecuencia observada&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ei=Frecuencia esperada</div>";
         ?>
 
-            <div class="row">
+            <div class="row container">
                 <?php
                 echo "<div class='col'>";
                 echo "<table align='center' border='2' class='small sm  table-bordered'>";
@@ -139,7 +139,7 @@ if (isset($_POST['boton'])) {
             echo "</div>";
         } else {
             echo " <table border='0' align='center'>
-                <tr><td> <br> <div class='alert alert-danger'>El archivo debe tener sólo 100 números aleatorios</div></td></tr>                
+                <tr><td> <br> <div class='alert alert-danger'>El archivo debe tener sólo 100 números aleatorios o verificar que al final de la columna no haya algún salgo de línea.</div></td></tr>                
                </table> ";
         }
     } else {
