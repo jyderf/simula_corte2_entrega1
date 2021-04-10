@@ -51,6 +51,7 @@ if (isset($_POST['boton'])) {
         //echo "Cantidad decimales = " . $largoElemento . "";
         echo "<h4 align='center'>Calculando Varianza</h4>";
         $porcentajeConfianza = $_POST['porcentajeConfianza'];
+        
         $n = $numlinea;
         $cantElementos = $numlinea;
         $m = sqrt($n);
@@ -145,7 +146,7 @@ if (isset($_POST['boton'])) {
         $LS = number_format($LS, 8, ',', '');
         $LS = Getfloat($LS);
 
-        echo "<div class='col'>";
+        echo "<div class='col small sm'>";
         echo "<p class='alert alert-success'>
         Varianza = σ² = 1/12 = 0,08333   
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -180,10 +181,10 @@ if (isset($_POST['boton'])) {
 
             <?php
             echo "<h5 class='container'>Busca en la tabla inferior Chi Cuadrado χ2, de acuerdo al color indicado </h5>";
-            echo "<p class='container'>Los valores corresponden a los utilizados para encontrar tanto LI, como LS</p>";
-            echo "<p class=' mx-4 alert bg-danger text-light'> LI (VAR)  </p>";
-            echo "<p class=' mx-4 alert bg-success text-light'> LI (VAR) </p>";
-            echo "<p class=' mx-4 alert alert-danger '><= Busca desplazándote horizontal o verticalmente.=> </p>";
+            echo "<p class='small sm container'>Los valores corresponden a los utilizados para encontrar tanto LI, como LS</p>";
+            echo "<p class='small sm mx-4 alert bg-danger text-light'> LI (VAR)  </p>";
+            echo "<p class='small sm mx-4 alert bg-success text-light'> LI (VAR) </p>";
+            echo "<p class='small sm mx-4 alert alert-danger '><= Busca desplazándote horizontal o verticalmente.=> </p>";
 
 
             // Abriendo el archivo
@@ -191,8 +192,8 @@ if (isset($_POST['boton'])) {
            
             echo"<div class='col'>";
             $inc = 0;
-            echo "<div class='table-responsive my-2 mx-3 col-11  '>";
-            echo "<table  class='small  table-bordered '>";
+            echo "<div class=' small sm table-responsive my-2 mx-3 col-11  '>";
+            echo "<table  class='small sm table-bordered '>";
             echo "<tbody>";
             
             for ($i = 0; $i < 58; $i++) {

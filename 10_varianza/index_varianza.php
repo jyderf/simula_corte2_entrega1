@@ -35,7 +35,45 @@
                     <input type="file" name="archivo" />
                     <br>
                     <br>
-                    <input name="porcentajeConfianza" id="porcentajeConfianza" type="number" name="filas" placeholder="Ingrese porcentaje de cofianza" class="col-lg-10 " min="1" max="100"   required>
+                    
+
+                    <label for="porcentajeConfianza" class="">Seleccione porcentaje de confianza</label>
+                    <select id="porcentajeConfianza" name="porcentajeConfianza" class="small sm ">
+                        <option class="small sm" value="99,99">99,99</option>
+                        <option class="small sm" value="99,75">99,75</option>
+                        <option class="small sm" value="99,5">99,5</option>
+                        <option class="small sm" value="99">99</option>
+                        <option class="small sm" value="97">97,5</option>
+                        <option class="small sm" value="95">95</option>
+                        <option class="small sm" value="90">90</option>
+                        <option class="small sm" value="85">85</option>
+                        <option class="small sm" value="80">80</option>
+                        <option class="small sm" value="75">75</option>
+                        <option class="small sm" value="70">70</option>
+                        <option class="small sm" value="65">65</option>
+                        <option class="small sm" value="60">60</option>
+                        <option class="small sm" value="55">55</option>
+                        <option class="small sm" value="50">50</option>
+                        <option class="small sm" value="45">45</option>
+                        <option class="small sm" value="40">40</option>
+                        <option class="small sm" value="35">35</option>
+                        <option class="small sm" value="30">30</option>
+                        <option class="small sm" value="25">25</option>
+                        <option class="small sm" value="20">20</option>
+                        <option class="small sm" value="15">15</option>
+                        <option class="small sm" value="10">10</option>
+                        <option class="small sm" value="5">5</option>
+                        <option class="small sm" value="2.5">2,5</option>
+                        <option class="small sm" value="1">1</option>
+                        <option class="small sm" value="0.5">0,5</option>
+                        <option class="small sm" value="0.25">0,25</option>
+                        <option class="small sm" value="0.1">0,1</option>
+                        <option class="small sm" value="nulo" selected>--</option>
+                    </select>
+                    <label for="cars" class=" ">%</label>
+
+
+
                     <br>
                     <br>
                     <input class='btn btn-danger' type="submit" value="Subir" name="boton" onclick="msjArchivoSubido();" />
